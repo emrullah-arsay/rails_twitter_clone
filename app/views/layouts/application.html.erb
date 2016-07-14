@@ -5,33 +5,76 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 
-			<% if user_signed_in? -%>
-						
-							<li><%= link_to 'New Tweet', new_tweet_path %></li>
-							<li><%= link_to 'Account', edit_user_registration_path %></li>
-							<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
-						</ul>
-			<% else -%>
-						
-							<li><%= link_to 'Sign up', new_user_registration_path %></li>
-							<li><%= link_to 'Sign in', new_user_session_path %></li>
-						</ul>
-			<% end -%>
+
+
+	<nav class="navbar navbar-default">
+  		<div class="container-fluid">
+   			 <div class="navbar-header">
+     		 	<a class="navbar-brand" href="#">Twitter</a>
+    		 </div>
+    	<% if user_signed_in? -%>
+    		<ul class="nav navbar-nav navbar-right">
+      			<li class="active"><%= link_to 'Home', root_path %></li>
+     			<li><%= link_to 'New Tweet', new_tweet_path %></li>
+
+     			
 
 
 
-			<% flash.each do |name, msg| %>
+     			<li><%= link_to 'My Account', edit_user_registration_path %></li>
+				<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+   			 </ul>
+   		<% else -%>	
+   			 <ul class="nav navbar-nav pull-right">
+   			 	<li><%= link_to 'Sign up', new_user_registration_path %></li>
+				<li><%= link_to 'Sign in', new_user_session_path %></li>
+			</ul>
+		<% end -%>
+  		</div>
+	</nav>
+
+	<div class="container text-center">   
+		<div class="row">
+			<div class="col-sm-2 well">
+			</div>
+			<div class="col-sm-8 well">
+				<% if current_page?(tweets_path) %>
+					<div class="col-sm-12">
+			          <div class="panel panel-default text-left">
+			            <div class="panel-body">
+			              <p contenteditable="true">Status: Feeling Blue</p>
+
+			              <button type="button" class="btn btn-default btn-sm">
+			                <span class="glyphicon glyphicon-thumbs-up"></span> Like
+			              </button>     
+			            </div>
+			          </div>
+			        </div>
+			     <%end %>
+
+				<% flash.each do |name, msg| %>
 				<%= content_tag(:div, msg, class: "alert alert-info") %>
-			<% end %>
+				<% end %>
+
+				<%= yield %>
+
+			</div>
+			<div class="col-sm-2 well">
+			</div>
+
+			
 
 
 
 
 
-<%= yield %>
+			
+		</div>
+	</div>
 
 </body>
 </html>
