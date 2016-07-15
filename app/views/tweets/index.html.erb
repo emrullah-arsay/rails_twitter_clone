@@ -11,7 +11,7 @@
                 <div class="well">
                       <p><%= tweet.user.name %></p>
                     <%if user_signed_in?%>
-                       <div class="round-image-25" style="margin:auto"><%= image_tag(current_user.avatar.url(:thumb)) %></div>
+                       <div class="round-image-25" style="margin:auto"><%= image_tag(tweet.user.avatar.url(:thumb)) %></div>
                     <%else%>
                        <p>Missing photo</p>
                     <%end%>
