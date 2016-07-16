@@ -60,25 +60,16 @@
 			          <div class="panel panel-default text-left">
 			            <div class="panel-body">
 
-			            	<%= form_for @tweet, url: {controller: "tweets", action: "create"} do |r| %>
- 							 
-
+			            	<%= form_for @tweet, url: {controller: "tweets", action: "create"} do |r| %>			
 			            		<%= render 'form' %>
-
-
-			            	<div class="col-sm-offset-10 col-sm-6" style="float:">
-
-		 								<%= r.submit "Create", class: "btn btn-primary" %>
-		 							
-										<% end %>	
-			                 </div> 
-
+							<% end %>	
+			              
 			            </div>
 			          </div>
 			        </div>
 			     <%end %>
 <br>
-
+				
 				<% flash.each do |name, msg| %>
 				<%= content_tag(:div, msg, class: "alert alert-info") %>
 				<% end %>
@@ -86,9 +77,9 @@
 				<%= yield %>
 
 			</div>  <!-- 2 BOLGE -->
-				<div class="col-sm-2 well"> <!-- 3 BOLGE -->
+			<div class="col-sm-2 well"> <!-- 3 BOLGE -->
 					 <h4>Recent <span class="gray">Comments</span></h4>
-					<div class="">
+				<div class="">
 
 	      					 <% Tweet.limit(5).order('created_at desc').each do |tweet| %>
 	  							<% tweet.comments.select(:body,:name).order('created_at desc').limit(3).each do |comment| %>
@@ -105,11 +96,8 @@
                          			<br>
 	     	 	 				<% end %>
 							<% end %>
-					</div> 
-
-
-
-				</div> <!-- 3 BOLGE -->
+				</div> 
+			</div> <!-- 3 BOLGE -->
 	</div><!-- row -->
 
 <% else -%>	
@@ -130,7 +118,7 @@
 
 			
 		</div>
-	</div>
+
 
 </body>
 </html>

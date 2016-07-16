@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 
     <% @tweets.each do |tweet| %>
@@ -17,8 +17,12 @@
 
          
       <div class="col-sm-9" style="padding:25px;margin:auto;">
-             <div >
+              <div >
                <p style="font-size:25px;float:left"><%= tweet.body %></p>
+            </div>
+           
+            <div style="font-size:15px;float:left">
+               <p ><%= tweet.image_file_name %></p>
             </div>
           <br>
        
