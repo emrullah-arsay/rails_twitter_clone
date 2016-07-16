@@ -6,11 +6,13 @@
 				<p class="lead"><%= comment.body %></p>
 				<p><small>Submitted <strong><%= time_ago_in_words(comment.created_at) %> ago</strong> by <%= comment.user.name %></small></p>
 		    </div>
-			<div class="btn-group btn-group-sm" style="margin-top:40px">
-				<div class="btn-group pull-right" style="float:right">
-					<% if comment.user == current_user -%>
-						<%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %>
-					<% end %>
+		    <div class=" col-sm-7" style="float:right">
+				<div class="btn-group btn-group-sm" style="margin-top:40px">
+					<div class="btn-group pull-right" style="float:right">
+						<% if comment.user == current_user -%>
+							<%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default",style:"float:right;margin-left:250px" %>
+						<% end %>
+					</div>
 				</div>
 			</div>
 		</div>

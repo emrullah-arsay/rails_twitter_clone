@@ -1,8 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<h3>Listing Tweets</h3>
-
-
 
     <% @tweets.each do |tweet| %>
      <div class="row">
@@ -19,17 +16,17 @@
             </div>
 
          
-         <div class="col-sm-9" style="padding:25px;margin:auto;">
+      <div class="col-sm-9" style="padding:25px;margin:auto;">
              <div >
                <p style="font-size:25px;float:left"><%= tweet.body %></p>
             </div>
           <br>
-        </div>
-             <div class="col-sm-9" style="float:right">
-                  <div class="btn-group btn-group-sm" style="margin-top:40px">
+       
+             <div class="col-sm-6" style="float:right">
+                  <div class="btn-group btn-group-sm" style="margin-top:40px;margin-left: 50px;float:right ">
                     
                          <div class="btn-group ">
-                           <%= link_to 'Show', tweet,class:"btn pull-right btn-default  ",type:"button" %>
+                           <%= link_to 'Show', tweet,class:"btn pull-right btn-default  ",type:"button",style:"float:right" %>
                          </div>
                       
                         <% if tweet.user == current_user%>
@@ -47,7 +44,7 @@
                       <%end%>
                </div>
             </div>
-      
+       </div>
         
       </div>
     <% end %>

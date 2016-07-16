@@ -1,19 +1,19 @@
 <p id="notice"><%= notice %></p>
+<div class="row" >
+	<div class="col-sm-12 " >
+		<p style="float:left;margin-bottom:30px;margin-top:30px;font-size:20px">
 
-<p>
-  <strong>Tweet:</strong>
-  <%= @comment.tweet_id %>
+
+
+ 		 <%= @comment.body %>
+		</p>
+	</div>
+</div>
+ 
+
+<p> 
+  <strong><%= @comment.user.name %></strong>
 </p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @comment.body %>
-</p>
 
-<p>
-  <strong>User:</strong>
-  <%= @comment.user %>
-</p>
-
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
 <%= link_to 'Back', comments_path %>

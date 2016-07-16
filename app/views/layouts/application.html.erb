@@ -36,18 +36,22 @@
 		<% end -%>
   		</div>
 	</nav>
-
+<% if user_signed_in? -%>
 	<div class="container text-center">   
 		<div class="row">
 			<div class="col-sm-2 well">  <!-- 1 BOLGE -->
 				<div class="well">
 					<%if user_signed_in?%>
 	        			<div class="round-image-50"><%= image_tag(current_user.avatar.url(:thumb)) %></div><br>            
+	        			<H4><div><%= current_user.name%></div></H4>
 	        			<strong><p>Hakkımda</p></strong>
 	        			<div><%= current_user.description%></div>
 	        		<%else%>
 	        			<p>no photo</p> 
 	        		<%end%>
+      			</div>
+      			<div class="well">
+      					<p style="float:left">Useful Links</p><br>
       			</div>
 			</div>
 			<div class="col-sm-8 well">   <!-- 2 BOLGE -->
@@ -56,18 +60,24 @@
 			          <div class="panel panel-default text-left">
 			            <div class="panel-body">
 
+			            	<%= form_for @tweet, url: {controller: "tweets", action: "create"} do |r| %>
+ 							 
 
-			             
-									
+			            		<%= render 'form' %>
 
-			              <button type="button" class="btn btn-default btn-sm">
-			                <span class="glyphicon glyphicon-thumbs-up"></span> Like
-			              </button>     
+
+			            	<div class="col-sm-offset-10 col-sm-6" style="float:">
+
+		 								<%= r.submit "Create", class: "btn btn-primary" %>
+		 							
+										<% end %>	
+			                 </div> 
+
 			            </div>
 			          </div>
 			        </div>
 			     <%end %>
-
+<br>
 
 				<% flash.each do |name, msg| %>
 				<%= content_tag(:div, msg, class: "alert alert-info") %>
@@ -75,11 +85,44 @@
 
 				<%= yield %>
 
-			</div>
-			<div class="col-sm-2 well"> <!-- 3 BOLGE -->
-			</div>
+			</div>  <!-- 2 BOLGE -->
+				<div class="col-sm-2 well"> <!-- 3 BOLGE -->
+					 <h4>Recent <span class="gray">Comments</span></h4>
+					<div class="">
 
+	      					 <% Tweet.limit(5).order('created_at desc').each do |tweet| %>
+	  							<% tweet.comments.select(:body,:name).order('created_at desc').limit(3).each do |comment| %>
+		  								<div class="well" style="height:100px">
+				  									
+				  							<p style="float:left;line-height:10px;"><strong><%= tweet.user.name %></strong></p>
+				 	   						<p style="float:left"><%= comment.body %></p>
+				 	   								
+
+			     					 		<div class="btn-group " style="float:left">
+		                           				<%= link_to 'Go to Action', tweet,class:"btn pull-right btn-default  ",type:"button",style:"float:left;line-height:5px" %>
+		                         			</div>
+	                         			</div>
+                         			<br>
+	     	 	 				<% end %>
+							<% end %>
+					</div> 
+
+
+
+				</div> <!-- 3 BOLGE -->
+	</div><!-- row -->
+
+<% else -%>	
+
+	<div class="container text-center">   
+		<div class="row">
+			<div class="col-sm-offset-2 col-sm-8 well">
 			
+			<%= yield %>
+			</div>
+	    </div> 
+	</div>
+<% end -%>	
 
 
 

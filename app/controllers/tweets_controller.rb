@@ -2,11 +2,18 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, except: [:index,:show]
 
+
+  def noticia
+    @posts = Post.order("created_at desc").limit(3)
+  end
+
+
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.all
-   @tweet = current_user.tweets.build
+    @tweets = Tweet.all.all.order("created_at DESC")
+    @tweet = Tweet.new
+    @tweet.user=current_user
   end
 
   # GET /tweets/1

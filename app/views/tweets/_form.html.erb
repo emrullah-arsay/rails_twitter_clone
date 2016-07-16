@@ -20,9 +20,11 @@
     </div>
     </br></br>
    <div class="form-group actions">
-        <div class="col-sm-offset-8 col-sm-6">
-            <%= f.submit "Create", class: "btn btn-primary" %>
+   <%if current_page?(new_tweet_path)%>
+        <div class="col-sm-offset-8 col-sm-6" style="float:left">
+            <%= f.submit "Create", class: "btn btn-default" ,style:'margin-left:40px' %>
         </div>
+  <%end%>
   </div>
 
 <% end %>
