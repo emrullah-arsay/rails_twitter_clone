@@ -1,33 +1,40 @@
-
-
-
-    <% @tweets.each do |tweet| %>
+ <% @tweets.each do |tweet| %>
      <div class="row">
          
             <div class="col-sm-3">
                 <div class="well">
-                      <p><%= tweet.user.name %></p>
+                     
                     <%if user_signed_in?%>
+
                        <div class="round-image-25" style="margin:auto"><%= image_tag(tweet.user.avatar.url(:thumb)) %></div>
                     <%else%>
                        <p>Missing photo</p>
                     <%end%>
+
+                    <strong> <p><%= tweet.user.name %></p></strong>
                 </div>
             </div>
 
          
-      <div class="col-sm-9" style="padding:25px;margin:auto;">
-              <div >
-               <p style="font-size:25px;float:left"><%= tweet.body %></p>
-            </div>
-           
-            <div style="font-size:15px;float:left">
-               <p ><%= tweet.image_file_name %></p>
-            </div>
+      <div class="col-sm-9" >
+          <div class="well">
+                <div >
+                 <p style="font-size:25px;float:left"><%= tweet.body %></p>
+              </div>
+             
+              <div style="">
+                
+              <div class=><%= image_tag tweet.image.url(:thumb) %></div><br>  
+              </div>
+          </div>
           <br>
-       
+              <div class="col-sm-6" style="float:left">
+                    <div class="btn-group " style="margin-left:-220px">
+                        <%#   <%= link_to 'like', tweet,class:"btn btn-default  ",type:"button",style:"float:left" %>
+                      </div>
+              </div>
              <div class="col-sm-6" style="float:right">
-                  <div class="btn-group btn-group-sm" style="margin-top:40px;margin-left: 50px;float:right ">
+                  <div class="btn-group btn-group-sm" style="margin-top:10px;margin-bottom:10px;margin-left: 50px;float:right ">
                     
                          <div class="btn-group ">
                            <%= link_to 'Show', tweet,class:"btn pull-right btn-default  ",type:"button",style:"float:right" %>

@@ -14,17 +14,12 @@
 	<nav class="navbar navbar-default">
   		<div class="container-fluid">
    			 <div class="navbar-header">
-     		 	<a class="navbar-brand" href="#">Twitter</a>
+     		 <p style="font-size:20px;margin-top:10px">	<%= link_to 'Twitter', tweets_path %> </p>
     		 </div>
     	<% if user_signed_in? -%>
     		<ul class="nav navbar-nav navbar-right">
-      			<li class="active"><%= link_to 'Home', root_path %></li>
+      			<li class="active"><%= link_to 'Home', tweets_path %></li>
      			<li><%= link_to 'New Tweet', new_tweet_path %></li>
-
-     			
-
-
-
      			<li><%= link_to 'My Account', edit_user_registration_path %></li>
 				<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
    			 </ul>
@@ -51,17 +46,21 @@
 	        		<%end%>
       			</div>
       			<div class="well">
-      					<p style="float:left">Useful Links</p><br>
+      			<%if user_signed_in?%>
+      					<p style="float:left"><%= link_to 'My Profile', myprofile_path %></p><br>
+      			<%else%>
+      					<p>Useful Links</p>
+      			<%end%>
       			</div>
 			</div>
 			<div class="col-sm-8 well">   <!-- 2 BOLGE -->
-				<% if current_page?(root_path) %>
+				<% if current_page?(tweets_path) %>
 					<div class=" col-sm-12">
 			          <div class="panel panel-default text-left">
 			            <div class="panel-body">
 
 			            	<%= form_for @tweet, url: {controller: "tweets", action: "create"} do |r| %>			
-			            		<%= render 'form' %>
+			            		<%= render 'form'   %>
 							<% end %>	
 			              
 			            </div>
@@ -82,11 +81,13 @@
 				<div class="">
 
 	      					 <% Tweet.limit(5).order('created_at desc').each do |tweet| %>
-	  							<% tweet.comments.select(:body,:name).order('created_at desc').limit(3).each do |comment| %>
+	  							<% tweet.comments.select(:body,:name).order('created_at desc').limit(5).each do |comment| %>
 		  								<div class="well" style="height:100px">
 				  									
 				  							<p style="float:left;line-height:10px;"><strong><%= tweet.user.name %></strong></p>
-				 	   						<p style="float:left"><%= comment.body %></p>
+				 	   						<p style="float:left;margin-right:50px">
+				 	   						<%=truncate( comment.body, :length => 17, :separator => ' ') %>
+				 	   						
 				 	   								
 
 			     					 		<div class="btn-group " style="float:left">
@@ -104,9 +105,24 @@
 
 	<div class="container text-center">   
 		<div class="row">
-			<div class="col-sm-offset-2 col-sm-8 well">
-			
+			<div class="well">
+		<!--
+
+				<div class="jumbotron">
+						    <h1>Twitter</h1>
+						    <h2>Come for what you love.
+								Stay for what you discover.</h2>
+
+						    <p>Sign up to see photos and tweets from your friends.</p>
+						    <p>
+				<%#	    <%= link_to ' Join »', new_user_registration_path,class:"btn btn-lg btn-primary" %>   
+		    				</p>
+		  			    </div>
+					<div class="col-sm-offset-2 col-sm-8 well">
+					
+		-->
 			<%= yield %>
+				</div>
 			</div>
 	    </div> 
 	</div>

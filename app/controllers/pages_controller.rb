@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
-	def show
-		render 'home'
+	def home
+
+	end
+	def profile
+     		 @tweets  = Tweet.all
 	end
 end

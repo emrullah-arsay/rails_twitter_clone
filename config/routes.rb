@@ -6,7 +6,14 @@ Rails.application.routes.draw do
   end
 
   #root to: "pages#show", page: "home"
-  root to: "tweets#index"
+  #root to: "tweets#index"
+  get "myprofile" => "pages#myprofile", :as => :myprofile
+
+  authenticated :user do
+    root to: 'tweets#index', as: :authenticated_root
+  end
+  root  to: 'pages#home'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -3,17 +3,15 @@ class TweetsController < ApplicationController
   before_filter :authenticate_user!, except: [:index,:show]
 
 
-  def noticia
-    @posts = Post.order("created_at desc").limit(3)
-  end
+
 
 
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.all.all.order("created_at DESC")
+    @tweets = Tweet.all.order("created_at DESC")
     @tweet = Tweet.new
-    @tweet.user=current_user
+    @tweet.user = current_user
   end
 
   # GET /tweets/1
@@ -37,7 +35,7 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
+        format.html { redirect_to tweets_url, notice: 'Tweet was successfully created.' }
         format.json { render :show, status: :created, location: @tweet }
       else
         format.html { render :new }
