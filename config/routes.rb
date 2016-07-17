@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :comments
   devise_for :users
   resources :tweets do
+    member do
+      put "like", to: "tweets#upvote"
+    end
     resources :comments
   end
 

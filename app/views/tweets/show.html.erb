@@ -12,7 +12,25 @@
 		 <!-- <strong>Body:</strong> -->
 		  <%= @tweet.body %>
 		</p>
-	  </div>
+	 </div>
+	 <div class="row">
+		 <div class="col-sm-offset-9 col-sm-1" style="float:right">
+	             <div class="btn-group " style="margin-left:-150px;">
+	                 <div class="btn btn-default glyphicon glyphicon-heart" >
+	                   <%= link_to like_tweet_path(@tweet), method: :put do %>
+	                     Like                        
+	                    </div>
+	                    <% end %>
+	                    <div class="btn" style="background:white;border:3px solid #d9d9d9;border-radius:0 5px 5px 0;">
+	                      <%= @tweet.get_upvotes.size %>
+	                     </div>     
+	                          
+	            </div>
+	      </div>
+
+	</div>
+
+
 </div>
  
 <div class="row" >

@@ -3,7 +3,11 @@ class TweetsController < ApplicationController
   before_filter :authenticate_user!, except: [:index,:show]
 
 
-
+def upvote 
+  @tweet = Tweet.find(params[:id])
+  @tweet.upvote_by current_user
+  redirect_to :back
+end  
 
 
   # GET /tweets

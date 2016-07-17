@@ -29,12 +29,20 @@
           </div>
           <br>
               <div class="col-sm-6" style="float:left">
-                    <div class="btn-group " style="margin-left:-220px">
-                        <%#   <%= link_to 'like', tweet,class:"btn btn-default  ",type:"button",style:"float:left" %>
-                      </div>
+                    <div class="btn-group " style="margin-left:-150px;">
+                        <div class="btn btn-default glyphicon glyphicon-heart" >
+                          <%= link_to like_tweet_path(tweet), method: :put do %>
+                            Like                        
+                        </div>
+                            <% end %>
+                              <div class="btn" style="background:white;border:3px solid #d9d9d9;border-radius:0 5px 5px 0;">
+                                  <%= tweet.get_upvotes.size %>
+                              </div>     
+                          
+                    </div>
               </div>
              <div class="col-sm-6" style="float:right">
-                  <div class="btn-group btn-group-sm" style="margin-top:10px;margin-bottom:10px;margin-left: 50px;float:right ">
+                  <div class="btn-group btn-group-sm" style="margin-top:0px;margin-bottom:10px;margin-left: 50px;float:right ">
                     
                          <div class="btn-group ">
                            <%= link_to 'Show', tweet,class:"btn pull-right btn-default  ",type:"button",style:"float:right" %>
