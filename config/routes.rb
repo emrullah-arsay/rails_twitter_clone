@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :users
-
   resources :comments
   devise_for :users
   resources :tweets do

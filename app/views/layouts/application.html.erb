@@ -37,24 +37,17 @@
 			<div class="col-sm-2 well">  <!-- 1 BOLGE -->
 				<div class="well">
 					<%if user_signed_in?%>
-	        			<div class="round-image-50">
-	        				<%= image_tag(current_user.avatar.url(:thumb)) %></div>
-	        			<br>            
-	        			<H4><div><%= current_user.name.titleize%></div></H4>
+	        			<div class="round-image-50"><%= image_tag(current_user.avatar.url(:thumb)) %></div><br>            
+	        			<H4><div><%= current_user.name%></div></H4>
 	        			<strong><p>Hakkımda</p></strong>
-	        			<div>
-	        				<%= current_user.description%>       				
-	        			</div>
-	        			<p></p>
-	        			<strong><div><%= current_user.created_at.strftime("%d %b. %Y")%></div> </strong> 
-	        			<p>tarihinde katıldın</p>
+	        			<div><%= current_user.description%></div>
 	        		<%else%>
 	        			<p>no photo</p> 
 	        		<%end%>
       			</div>
       			<div class="well">
       			<%if user_signed_in?%>
-      					<p style="float:left"><%= link_to 'My Profile', user_path(current_user) %></p><br>
+      					<p style="float:left"><%= link_to 'My Profile', myprofile_path %></p><br>
       			<%else%>
       					<p>Useful Links</p>
       			<%end%>
