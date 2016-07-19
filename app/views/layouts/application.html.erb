@@ -47,7 +47,7 @@
       			</div>
       			<div class="well">
       			<%if user_signed_in?%>
-      					<p style="float:left"><%= link_to 'My Profile', myprofile_path %></p><br>
+      					<p style="float:left"><%= link_to 'My Profile', user_path(current_user) %></p><br>
       			<%else%>
       					<p>Useful Links</p>
       			<%end%>
