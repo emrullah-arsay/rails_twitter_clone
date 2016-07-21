@@ -8,9 +8,6 @@
 
 </head>
 <body>
-
-
-
 	<nav class="navbar navbar-default">
   		<div class="container-fluid">
    			 <div class="navbar-header">
@@ -38,7 +35,7 @@
 				<div class="well">
 					<%if user_signed_in?%>
 	        			<div class="round-image-50"><%= image_tag(current_user.avatar.url(:thumb)) %></div><br>            
-	        			<H4><div><%= current_user.name%></div></H4>
+	        			<h4><div><%= current_user.name.titleize %></div></h4>
 	        			<strong><p>Hakkımda</p></strong>
 	        			<div><%= current_user.description%></div>
 	        		<%else%>
@@ -84,7 +81,7 @@
 	  							<% tweet.comments.select(:body,:name).order('created_at desc').limit(5).each do |comment| %>
 		  								<div class="well" style="height:100px">
 				  									
-				  							<p style="float:left;line-height:10px;"><strong><%= tweet.user.name %></strong></p>
+				  							<p style="float:left;line-height:10px;"><strong><%= tweet.user.name.titleize %></strong></p>
 				 	   						<p style="float:left;margin-right:50px">
 				 	   						<%=truncate( comment.body, :length => 17, :separator => ' ') %>
 				 	   						
